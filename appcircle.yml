@@ -10,16 +10,21 @@ workflows:
       - name: Get Flutter packages
         script: |
           flutter pub get
-      - name: Flutter build ipa
+      - name: Flutter build ios
         script: |
-          flutter build ipa --release \
-            --export-options-plist=ios/exportOptions.plist
+          flutter build ios --release
+      - name: Create IPA
+        script: |
+          cd ios
+          xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -archivePath Runner.xcarchive archive
+          xcodebuild -exportArchive -archivePath Runner.xcarchive -exportPath . -exportOptionsPlist exportOptions.plist
     artifacts:
-      - build/ios/ipa/*.ipa
-      - build/ios/archive/*.xcarchive
+      - ios/*.ipa
+      - ios/Runner.xcarchive
     distribution:
       app_store_connect:
         api_key: $APP_STORE_CONNECT_PRIVATE_KEY
         key_id: $APP_STORE_CONNECT_KEY_ID
         issuer_id: $APP_STORE_CONNECT_ISSUER_ID
         submit_to_testflight: true
+
