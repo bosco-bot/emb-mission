@@ -1,0 +1,20 @@
+version: 1
+workflows:
+  ios-workflow:
+    name: iOS Build
+    environment:
+      flutter: stable
+      xcode: latest
+      cocoapods: default
+    scripts:
+      - name: Build and Export IPA
+        script: |
+          flutter pub get
+          flutter build ios --release --no-codesign
+          cd ios
+          xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -archivePath Runner.xcarchive archive
+          xcodebuild -exportArchive -archivePath Runner.xcarchive -exportPath . -exportOptionsPlist exportOptions.plist
+          ls -la *.ipa
+    artifacts:
+      - ios/*.ipa
+      - ios/Runner.xcarchive
