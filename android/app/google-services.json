@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1084416444268",
+    "project_id": "ebmmission-1b301",
+      "storage_bucket": "ebmmission-1b301.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1084416444268:android:1c6df6ea225b5b7e7ad549",
+        "android_client_info": {
+          "package_name": "com.embmission.emb_mission"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_0KZH-H7NwfB-R2xfVjv2eH5fy-FdiSk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
