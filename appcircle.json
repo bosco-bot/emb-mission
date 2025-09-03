@@ -14,13 +14,17 @@
           "script": "flutter pub get"
         },
         {
-          "name": "Flutter build ipa",
-          "script": "flutter build ipa --release --export-options-plist=ios/exportOptions.plist"
+          "name": "Flutter build ios",
+          "script": "flutter build ios --release"
+        },
+        {
+          "name": "Create IPA",
+          "script": "cd ios && xcodebuild -workspace Runner.xcworkspace -scheme Runner -configuration Release -archivePath Runner.xcarchive archive && xcodebuild -exportArchive -archivePath Runner.xcarchive -exportPath . -exportOptionsPlist exportOptions.plist"
         }
       ],
       "artifacts": [
-        "build/ios/ipa/*.ipa",
-        "build/ios/archive/*.xcarchive"
+        "ios/*.ipa",
+        "ios/Runner.xcarchive"
       ],
       "distribution": {
         "app_store_connect": {
